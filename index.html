@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>База вопросов и ответов по Renga</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="logo-wrap">
+        <a class="logo-link" href="https://rengabim.com/" target="_blank" rel="noopener" aria-label="Открыть сайт Renga">
+          <img class="logo-image" src="assets/img/renga-logo.png" alt="Renga" />
+        </a>
+      </div>
+
+      <nav class="side-nav" aria-label="Разделы FAQ">
+        <div class="side-divider"></div>
+        <div id="sectionList"></div>
+      </nav>
+
+      <div class="side-help">
+        <div class="help-title"><span class="help-icon">?</span> Не нашли ответ?</div>
+        <p>Вы можете обратиться к техническому специалисту или направить вопрос по почте:</p>
+        <a class="help-mail" href="mailto:kartashov_ma@ascon.ru?subject=Вопрос по базе знаний Renga">kartashov_ma@ascon.ru</a>
+        <a class="help-action" href="mailto:kartashov_ma@ascon.ru?subject=Вопрос по базе знаний Renga">Написать вопрос</a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h1>База вопросов и ответов по Renga</h1>
+          <p>Готовые ответы для пользователей и заказчиков</p>
+        </div>
+        <div class="top-actions">
+          <button type="button" id="aboutBtn" class="top-link"><span>?</span> О проекте</button>
+        </div>
+      </header>
+
+      <section class="control-panel" aria-label="Поиск и фильтры">
+        <div class="search-wrap">
+          <span class="search-icon">⌕</span>
+          <input id="search" type="search" placeholder="Поиск по вопросу, ответу или ключевым словам" />
+        </div>
+        <div class="filter-row">
+          <select id="sectionFilter"><option value="">Все разделы</option></select>
+          <select id="answerFilter">
+            <option value="">Все ответы</option>
+            <option value="Есть ответ">Есть ответ</option>
+            <option value="Нет ответа">Нет ответа</option>
+          </select>
+          <select id="sortFilter" aria-label="Сортировка вопросов">
+            <option value="default">По-умолчанию</option>
+            <option value="question">По вопросу А–Я</option>
+            <option value="section">По разделу</option>
+            <option value="status">По статусу ответа</option>
+          </select>
+          <div class="view-toggle" aria-label="Переключатель отображения">
+            <button id="tileViewBtn" class="view-btn active" type="button">▦ Плитка</button>
+            <button id="listViewBtn" class="view-btn" type="button">☰ Строки</button>
+          </div>
+          <button class="reset" id="resetBtn" type="button">Сбросить</button>
+        </div>
+      </section>
+
+      <section class="summary" aria-label="Статистика базы">
+        <span>Всего вопросов: <strong id="totalCount">0</strong></span>
+        <span>Показано сейчас: <strong id="visibleCount">0</strong></span>
+        <span class="good">С ответом: <strong id="answerCount">0</strong></span>
+        <span class="warn">Без ответа: <strong id="noAnswerCount">0</strong></span>
+      </section>
+
+      <section class="workarea">
+        <section class="question-column">
+          <div class="content-head">
+            <h2 id="contentTitle">Все вопросы</h2>
+            <div class="muted" id="contentSub">Выберите интересующий вопрос из списка или воспользуйтесь строкой поиска</div>
+          </div>
+          <div id="cards" class="cards cards-tile"></div>
+        </section>
+
+        <aside class="details-panel" id="detailsPanel" aria-live="polite">
+          <div class="details-empty">
+            <div class="empty-icon">i</div>
+            <h2>Выберите вопрос</h2>
+            <p>Нажмите на карточку или кнопку «Подробнее», чтобы открыть полный ответ АСКОН</p>
+          </div>
+        </aside>
+      </section>
+
+      <footer class="footer">
+        <span>База вопросов и ответов по Renga</span>
+        <span>© Разработано kartashov_ma, 2026 · <a class="footer-admin-link" href="admin.html">админ-панель</a></span>
+      </footer>
+    </main>
+  </div>
+
+  <div id="aboutModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+    <div class="modal about-modal">
+      <button type="button" class="modal-close" id="closeAbout">×</button>
+      <h2 id="aboutTitle">О проекте</h2>
+      <p>Сайт разработан на основе таблицы запросов по Renga и предназначен для быстрого поиска ответов по типовым вопросам пользователей.</p>
+      <p>Для внесения изменений, добавления новых вопросов или корректировки ответов можно направить запрос ответственному специалисту:</p>
+      <p><a href="mailto:kartashov_ma@ascon.ru?subject=Изменения в базе знаний Renga">kartashov_ma@ascon.ru</a></p>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

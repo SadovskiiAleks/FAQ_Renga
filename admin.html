@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Админ-панель — База вопросов и ответов по Renga</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="admin-body">
+  <main class="admin-page">
+    <header class="admin-header">
+      <a class="admin-logo" href="index.html" aria-label="Вернуться на сайт">
+        <img src="assets/img/renga-logo.png" alt="Renga" />
+      </a>
+      <div>
+        <h1>Админ-панель базы вопросов и ответов</h1>
+        <p>Форма помогает добавить новый вопрос и сформировать готовую запись для <code>data.js</code></p>
+      </div>
+      <a class="admin-back" href="index.html">← На сайт</a>
+    </header>
+
+    <section class="admin-note">
+      <strong>Важно:</strong> локальный HTML-сайт и GitHub Pages не могут сами перезаписывать <code>data.js</code>. После заполнения формы скопируй готовый блок и вставь его в <code>data.js</code> перед закрывающей строкой <code>];</code>, либо скачай обновлённый <code>data.js</code> и замени файл в проекте.
+    </section>
+
+    <section class="admin-layout">
+      <form class="admin-form" id="adminForm">
+        <div class="admin-card-title">
+          <h2>Новый вопрос</h2>
+          <button type="button" id="fillExampleBtn" class="admin-secondary">Заполнить пример</button>
+        </div>
+
+        <label>
+          <span>ID</span>
+          <div class="admin-inline">
+            <input id="fieldId" type="text" placeholder="REN-Q-327" />
+            <button type="button" id="nextIdBtn" class="admin-secondary">Следующий ID</button>
+          </div>
+        </label>
+
+        <label>
+          <span>Раздел</span>
+          <select id="fieldSection"></select>
+        </label>
+
+        <label id="customSectionWrap" class="hidden">
+          <span>Новый раздел</span>
+          <input id="fieldCustomSection" type="text" placeholder="Например: Шаблоны и настройки" />
+        </label>
+
+        <label>
+          <span>Содержание вопроса</span>
+          <textarea id="fieldQuestion" rows="5" placeholder="Введите вопрос пользователя"></textarea>
+        </label>
+
+        <label>
+          <span>Ответ АСКОН</span>
+          <textarea id="fieldAnswer" rows="8" placeholder="Введите ответ. Если оставить пустым, статус будет “Нет ответа”"></textarea>
+        </label>
+
+        <label>
+          <span>Ключевые слова</span>
+          <textarea id="fieldKeywords" rows="3" placeholder="слова, через, запятую"></textarea>
+        </label>
+        <div class="admin-actions-row">
+          <button type="button" id="generateKeywordsBtn" class="admin-secondary">Подобрать ключевые слова</button>
+        </div>
+
+        <label>
+          <span>Файл-пример</span>
+          <input id="fieldFile" type="text" placeholder="assets/gif/example.gif или assets/pdf/instruction.pdf" />
+        </label>
+
+        <div class="admin-status-line">
+          <span>Статус ответа:</span>
+          <strong id="answerStatusPreview">Нет ответа</strong>
+        </div>
+
+        <div class="admin-buttons">
+          <button type="button" id="generateBtn" class="admin-primary">Сформировать запись</button>
+          <button type="button" id="clearBtn" class="admin-secondary">Очистить</button>
+        </div>
+      </form>
+
+      <aside class="admin-result">
+        <div class="admin-card-title">
+          <h2>Предпросмотр</h2>
+        </div>
+        <div id="previewCard" class="admin-preview-card">
+          <h3>Новый вопрос</h3>
+          <div class="meta">
+            <span class="tag"><span class="label">Раздел:</span> —</span>
+            <span class="tag wait">Нет ответа</span>
+          </div>
+          <p class="keywords"><strong>Ключевые слова:</strong> —</p>
+        </div>
+
+        <div class="admin-card-title output-title">
+          <h2>Готовый блок для data.js</h2>
+        </div>
+        <textarea id="outputBlock" class="admin-output" spellcheck="false" placeholder="После нажатия “Сформировать запись” здесь появится готовый блок"></textarea>
+
+        <div class="admin-buttons admin-buttons-wrap">
+          <button type="button" id="copyBlockBtn" class="admin-primary">Скопировать блок</button>
+          <button type="button" id="downloadTxtBtn" class="admin-secondary">Скачать TXT</button>
+          <button type="button" id="downloadDataJsBtn" class="admin-secondary">Скачать обновлённый data.js</button>
+          <button type="button" id="downloadJsonBtn" class="admin-secondary">Скачать data.json</button>
+        </div>
+
+        <div id="duplicateWarning" class="admin-warning hidden"></div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
